@@ -40,9 +40,21 @@ class EODHD:
             logger.error(f"Request failed for {args[0]}: {str(e)}")
             raise
 
-    def get_dividends(self, ticker, from_date):
-        url = urljoin(self.BASE, f"div/{ticker}")
-        params = {"from": from_date}
+    def get_ipos(self, from_date, to_date):
+        url = urljoin(self.BASE, f"calendar/ipos")
+        params = {"from": from_date, "to": to_date}
+        resp = self.request("get", url, params=params)
+        return resp.json()
+        
+    def get_splits(self, from_date, to_date):
+        url = urljoin(self.BASE, f"calendar/splits")
+        params = {"from": from_date, "to": to_date}
+        resp = self.request("get", url, params=params)
+        return resp.json()
+        
+    def get_earnings(self, from_date, to_date):
+        url = urljoin(self.BASE, f"calendar/earnings")
+        params = {"from": from_date, "to": to_date}
         resp = self.request("get", url, params=params)
         return resp.json()
 
