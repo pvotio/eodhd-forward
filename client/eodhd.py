@@ -45,13 +45,13 @@ class EODHD:
         params = {"from": from_date, "to": to_date}
         resp = self.request("get", url, params=params)
         return resp.json()
-        
+
     def get_splits(self, from_date, to_date):
         url = urljoin(self.BASE, f"calendar/splits")
         params = {"from": from_date, "to": to_date}
         resp = self.request("get", url, params=params)
         return resp.json()
-        
+
     def get_earnings(self, from_date, to_date):
         url = urljoin(self.BASE, f"calendar/earnings")
         params = {"from": from_date, "to": to_date}
